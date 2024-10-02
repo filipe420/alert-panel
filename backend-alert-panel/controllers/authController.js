@@ -13,6 +13,7 @@ const AuthController = {
         if (!user) {
             return res.status(401).send('Invalid credentials');
         }
+        
 
         const isPasswordValid = await bcrypt.compare(password, user.password);
 
@@ -26,7 +27,7 @@ const AuthController = {
         });
     },
     register: async (req, res) => {
-        
+
         const { email, password } = req.body;
 
         if (!email || !password) {

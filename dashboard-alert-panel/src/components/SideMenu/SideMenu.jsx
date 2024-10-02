@@ -14,6 +14,7 @@ export default function SideMenu() {
         <SideMenuItem title="Sair" icon={SignOut} onClick={() => {
           localStorage.clear()
           router.push('/')
+          
         }} />
   </div>;
 }
