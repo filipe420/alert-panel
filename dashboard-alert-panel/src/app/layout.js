@@ -7,8 +7,9 @@ import { usePathname } from "next/navigation";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({ children }) {
+const routePath = usePathname()
 
-  if(usePathname() === "/"){
+  if(routePath === "/" || routePath === "/register"){
     return (
       <html lang="en">
         <body className={`${inter.className} flex justify-center items-center h-screen`}>

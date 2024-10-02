@@ -1,6 +1,7 @@
 import AuthRepository from '../repositories/authRepository.js';
 import {getDB} from "../config/db.js";
 import bcrypt from 'bcrypt';
+import { id } from 'date-fns/locale';
 
 const AuthController = {
     login: async (req, res) => {
@@ -19,13 +20,18 @@ const AuthController = {
             return res.status(401).send('Invalid credentials');
         }
 
-        res.send(user);
+        res.send({
+            id: user._id,
+            email: user.email
+        });
     },
     register: async (req, res) => {
+        
         const { email, password } = req.body;
 
         if (!email || !password) {
             return res.status(400).send('Invalid data');
+
         }
 
         const db = await getDB();

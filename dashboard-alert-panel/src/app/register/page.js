@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useState } from "react";
 import InputLabel from "@/components/InputLabel/InputLabel";
-import {loginUser} from "@/services/authService";
+import {loginUser, registerUser} from "@/services/authService";
 import RoundedButton from "@/components/RoundedButton/RoundedButton";
 import {useRouter} from "next/navigation";
 
@@ -12,7 +12,7 @@ export default function Home() {
   const router = useRouter();
 
   async function handleLogin(){
-    const response = await loginUser({email, password});
+    const response = await registerUser({email, password});
 
     if(response.ok){
       const user = await response.json();
@@ -34,7 +34,7 @@ export default function Home() {
   return (
       <main className="flex min-h-screen gap-4 flex-grow flex-col items-center justify-center p-6">
         <InputLabel label={"Email"} onChange={(e) => setEmail(e.target.value)} />
-        <InputLabel type="password" label={"Password"} onChange={(e) => setPassword(e.target.value)} />
+        <InputLabel label={"Password"} onChange={(e) => setPassword(e.target.value)} />
         <RoundedButton onClick={handleLogin} text={"Login"} />
       </main>
   );

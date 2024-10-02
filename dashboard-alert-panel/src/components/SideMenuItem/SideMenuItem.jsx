@@ -1,12 +1,16 @@
 
 import { useRouter } from "next/navigation";
 
-export default function SideMenuItem({title = "Dashboard", icon, path}) {
+export default function SideMenuItem({title = "Dashboard", icon, path, onClick}) {
     const Icon = icon;
 
     const router = useRouter();
 
     function goToPath() {
+        if (onClick) {
+            onClick();
+        }
+
         if (path) {
             router.push(path);
         }
